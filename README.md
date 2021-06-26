@@ -11,8 +11,9 @@ This script:
 
 To run the script, login as root:
 ```shell
-./ubuntu_setup/ubuntu_setup.sh <host> <user>
+./ubuntu_setup/ubuntu_setup.sh <host> <user> "<rsa key>"
 ```
+Quotes are required around the rsa key because it contains spaces
 
 The script will create backup hosts and ssh config files in root's home directory
 

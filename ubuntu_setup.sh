@@ -37,7 +37,7 @@ adduser --disabled-password --gecos "" $USERID
 adduser $USERID sudo
 mkdir /home/$USERID/.ssh
 chmod -R 700 /home/$USERID/.ssh
-echo $3 >> /home/$USERID/.ssh/authorized_keys
+echo $3 > /home/$USERID/.ssh/authorized_keys
 echo "User created"
 
 hostnamectl set-hostname $NEW_HOSTNAME 
