@@ -11,6 +11,10 @@ if [ ! -n "$2" ] ; then
 	exit 1
 fi
 
+if [ ! -n "$3" ] ; then
+	echo 'Missing argument three: ssh_key'
+	exit 1
+fi
 
 if [ "$(id -u)" != "0" ] ; then
 	echo 'Sorry you are not root'
@@ -33,7 +37,7 @@ adduser --disabled-password --gecos "" $USERID
 adduser $USERID sudo
 mkdir /home/$USERID/.ssh
 chmod -R 700 /home/$USERID/.ssh
-cp ~/.ssh/authorized_keys /home/$USERID/.ssh/authorized_keys
+echo $3 >> /home/$USERID/.ssh/authorized_keys
 echo "User created"
 
 hostnamectl set-hostname $NEW_HOSTNAME 
