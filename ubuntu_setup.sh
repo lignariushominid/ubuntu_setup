@@ -33,18 +33,18 @@ adduser --disabled-password --gecos "" $USERID
 adduser $USERID sudo
 mkdir /home/$USERID/.ssh
 chmod -R 700 /home/$USERID/.ssh
-cp ~/.ssh/authorised_keys /home/$USERID/.ssh/authorised_keys
+cp ~/.ssh/authorized_keys /home/$USERID/.ssh/authorized_keys
 echo "User created"
 
 hostnamectl set-hostname $NEW_HOSTNAME 
-cp /etc/hosts ./hosts_backup
+cp /etc/hosts ~/hosts_backup
 sudo sed -i 's/127.0.0.1 localhost/127.0.0.1 $NEW_HOSTNAME.boardman.io $NEW_HOSTNAME/' /etc/hosts
 echo "Hostname updated to: $(cat /etc/hostname)"
 
 timedatectl set-timezone Europe/London
 echo "Timezone set to: $(timedatectl)"
 
-cp /etc/ssh/sshd_config ./sshd_config_backup
+cp /etc/ssh/sshd_config ~/sshd_config_backup
 sed -i 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 echo "SSH root login and passwords disabled"
