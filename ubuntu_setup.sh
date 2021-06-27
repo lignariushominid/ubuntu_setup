@@ -12,7 +12,12 @@ if [ ! -n "$2" ] ; then
 fi
 
 if [ ! -n "$3" ] ; then
-	echo 'Missing argument three: ssh_key'
+	echo 'Missing argument three: password'
+	exit 1
+fi
+
+if [ ! -n "$4" ] ; then
+	echo 'Missing argument four: ssh_key'
 	exit 1
 fi
 
@@ -28,6 +33,8 @@ apt install -y ufw
 CUR_HOSTNAME=$(cat /etc/hostname)
 NEW_HOSTNAME=$1
 USERID=$2
+PW=$3
+KEY=$4
 
 echo "The current hostname is: $CUR_HOSTNAME"
 echo "The new hostname is:     $NEW_HOSTNAME"
@@ -35,10 +42,11 @@ echo "The userid is:           $USERID"
 
 adduser --disabled-password --gecos "" $USERID
 adduser $USERID sudo
+echo $USERID:$PW | chpasswd
 mkdir /home/$USERID/.ssh
 chmod -R 700 /home/$USERID/.ssh
 chown -R $USERID:$USERID /home/$USERID/.ssh
-echo $3 > /home/$USERID/.ssh/authorized_keys
+echo $KEY > /home/$USERID/.ssh/authorized_keys
 chmod 600 /home/$USERID/.ssh/authorized_keys
 chown $USERID:$USERID /home/$USERID/.ssh/authorized_keys
 echo "User created"
