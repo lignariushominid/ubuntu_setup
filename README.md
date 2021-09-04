@@ -22,3 +22,6 @@ To copy the public rsa kay run the following on the local machine and copy it as
 cat ~/.ssh/id_rsa.pub
 ```
 
+The developer token needed to login to Github can be regenerated here on the Github website:
+__Settings__>__Developer settings__>__Personal access tokens
+
