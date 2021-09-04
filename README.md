@@ -23,5 +23,6 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 The developer token needed to login to Github can be regenerated here on the Github website:
-__Settings__>__Developer settings__>__Personal access tokens
+
+__Settings__>__Developer settings__>__Personal access tokens__
 
